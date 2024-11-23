@@ -21,13 +21,7 @@ public class Army {
     public void reportYourself(){
         System.out.println("----------------REPORT----------------");
         for (Soldier soldier: armyList){
-            if (soldier instanceof Attacker){
-                soldier.reportYourself(((Attacker) soldier).getType());
-            } else if (soldier instanceof Defender) {
-                soldier.reportYourself(((Defender) soldier).getType());
-            } else {
-                soldier.reportYourself(((Adaptable) soldier).getType());
-            }
+            soldier.reportYourself(soldier.getType());
         }
         System.out.println("");
         System.out.println("");
@@ -37,7 +31,7 @@ public class Army {
     public void attack(){
         System.out.println("----------------ATTACK----------------");
         for (Soldier soldier: armyList){
-            if (soldier instanceof Attacker || soldier instanceof Adaptable){
+            if (soldier instanceof Attack){
                 ((Attack) soldier).attack();
             }
         }
@@ -49,7 +43,7 @@ public class Army {
     public void defend(){
         System.out.println("----------------DEFEND----------------");
         for (Soldier soldier: armyList){
-            if (soldier instanceof Defender || soldier instanceof Adaptable){
+            if (soldier instanceof Defend){
                 ((Defend) soldier).defend();
             }
         }
@@ -65,12 +59,12 @@ public class Army {
         for (Soldier soldier: armyList){
             if(soldier instanceof Attacker && !printedA){
                 if (!printedA) {
-                    System.out.println("----------------" + ((Attacker) soldier).getSPECIAL() + "----------------");
+                    System.out.println("----------------" + soldier.getSpecial() + "----------------");
                     printedA = true;
                 }
                 for (Soldier soldier1: armyList){
                     if(soldier1 instanceof Attacker){
-                        ((Attacker) soldier1).getSpecialMove();
+                        soldier1.getSpecialMove();
                     }
                 }
                 System.out.println("");
@@ -80,12 +74,12 @@ public class Army {
 
             if(soldier instanceof Defender && !printedB){
                 if (!printedB) {
-                    System.out.println("----------------" + ((Defender) soldier).getSPECIAL() + "----------------");
+                    System.out.println("----------------" + soldier.getSpecial() + "----------------");
                     printedB = true;
                 }
                 for (Soldier soldier1: armyList){
                     if(soldier1 instanceof Defender){
-                        ((Defender) soldier1).getSpecialMove();
+                        soldier1.getSpecialMove();
                     }
                 }
                 System.out.println("");
@@ -95,12 +89,12 @@ public class Army {
 
             if(soldier instanceof Adaptable && !printedC){
                 if (!printedC) {
-                    System.out.println("----------------" + ((Adaptable) soldier).getSPECIAL() + "----------------");
+                    System.out.println("----------------" + soldier.getSpecial() + "----------------");
                     printedC = true;
                 }
                 for (Soldier soldier1: armyList){
                     if(soldier1 instanceof Adaptable){
-                        ((Adaptable) soldier1).getSpecialMove();
+                        soldier1.getSpecialMove();
                     }
                 }
                 System.out.println("");
